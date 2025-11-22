@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: qa
+data:
+  APP_NAME: "APP_NAME_PLACEHOLDER"
+  ENVIRONMENT: "qa"
+  NODE_ENV: "qa"
+  LOG_LEVEL: "info"

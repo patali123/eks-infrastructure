@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: qa
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: APP_LABEL
+  template:
+    metadata:
+      labels:
+        app: APP_LABEL
+    spec:
+      containers:
+      - name: app
+        image: paulbouwer/hello-kubernetes:1.10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
