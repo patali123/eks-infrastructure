@@ -70,22 +70,22 @@ resource "helm_release" "cluster_autoscaler" {
   repository = "https://kubernetes.github.io/autoscaler"
   chart      = "cluster-autoscaler"
   namespace  = "kube-system"
-version    = "9.37.0"
+  version    = "9.37.0"
 
-  set = [
-    {
-      name  = "rbac.serviceAccount.name"
-      value = "cluster-autoscaler"
-    },
-    {
-      name  = "autoDiscovery.clusterName"
-      value = aws_eks_cluster.eks.name
-    },
-    {
-      name  = "awsRegion"
-      value = "us-east-2"
-    }
-  ]
+  set {
+    name  = "rbac.serviceAccount.name"
+    value = "cluster-autoscaler"
+  }
+
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = aws_eks_cluster.eks.name
+  }
+
+  set {
+    name  = "awsRegion"
+    value = "us-east-2"
+  }
 
   depends_on = [helm_release.metrics_server]
 }
